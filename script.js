@@ -1,12 +1,22 @@
 const container = document.querySelector(".heros-nav")
 var cardHero = document.querySelector(".card")
+var heroPhoto = document.querySelector(".hero-photo")
 const container2 = document.querySelector(".container-2")
+const inv2 = document.querySelector(".inv-2")
+
+var notFound = document.createElement("span")
+var nfText = document.createTextNode("Não encontrado")
+
+notFound.setAttribute("class", "not-found")
 
 var herosDc = [
     {
         aka: "Batman",
         name: "Bruce Wayne",
-        photo: "https://static.wikia.nocookie.net/dccomics/images/0/08/Batman_Vol_3_131_Textless_Fabok_Variant.jpg/revision/latest?cb=20240221225901&path-prefix=pt",
+        photo: {
+            card: "https://static.wikia.nocookie.net/dccomics/images/0/08/Batman_Vol_3_131_Textless_Fabok_Variant.jpg/revision/latest?cb=20240221225901&path-prefix=pt",
+            cont: "https://recreio.com.br/media/uploads/dc_comics/batman_quadrinhos_capa.jpg",
+        },
         height: "1,88m a 1,90m",
         weight: "80kg a 90kg",
         gender: "Masculino",
@@ -16,7 +26,10 @@ var herosDc = [
     {
         aka: "Super Homem",
         name: "Clark Kent",
-        photo: "https://static.wikia.nocookie.net/dccomics/images/a/a5/Superman_Vol_5_1_Textless.jpg/revision/latest/scale-to-width-down/1200?cb=20200421194020&path-prefix=pt",
+        photo: {
+            card: "https://static.wikia.nocookie.net/dccomics/images/a/a5/Superman_Vol_5_1_Textless.jpg/revision/latest/scale-to-width-down/1200?cb=20200421194020&path-prefix=pt",
+            cont: "https://media.revistagq.com/photos/643ffd0043b7dde5906f2d7e/master/pass/904934.jpg",
+        },
         height: "1,90m a 2 metros",
         weight: "100kg a 120kg",
         gender: "Masculino",
@@ -26,7 +39,10 @@ var herosDc = [
     {
         aka: "Mulher Maravilha",
         name: "Diana de Themyscira",
-        photo: "https://nishiweb.com.br/animecomics/images/upload/110.jpg",
+        photo: {
+            card: "https://nishiweb.com.br/animecomics/images/upload/110.jpg",
+            cont: "https://deliriumnerd.com/wp-content/uploads/2016/12/ww751_580ad7e0bf5c79-22220683.jpg",
+        },
         height: "1,75m a 1,80m",
         weight: "65kg a 75kg",
         gender: "Feminino",
@@ -36,7 +52,10 @@ var herosDc = [
     {
         aka: "Flash",
         name: "Barry Allen",
-        photo: "https://hqrock.com.br/wp-content/uploads/2011/06/flash-for-reboot.jpg",
+        photo: {
+            card: "https://hqrock.com.br/wp-content/uploads/2011/06/flash-for-reboot.jpg",
+            cont: "https://nerdzombies.com.br/wp-content/uploads/2020/05/The-most-satisfying-DC-comic-stories-of-the-year-1.jpg",
+        },
         height: "1,75m a 1,80m",
         weight: "70kg a 80kg",
         gender: "Masculino",
@@ -46,7 +65,10 @@ var herosDc = [
     {
         aka: "Capitão Marvel",
         name: "Billy Batson",
-        photo: "https://static.wikia.nocookie.net/dccomics/images/6/61/Shazam%21_Vol_3_1_Textless_Variant.jpg/revision/latest?cb=20190608173315&path-prefix=pt",
+        photo: {
+            card: "https://static.wikia.nocookie.net/dccomics/images/6/61/Shazam%21_Vol_3_1_Textless_Variant.jpg/revision/latest?cb=20190608173315&path-prefix=pt",
+            cont: "https://observatoriodocinema.uol.com.br/wp-content/plugins/seox-image-magick/imagick_convert.php?width=1200&height=627&format=.jpg&quality=91&imagick=/wp-content/uploads/2018/07/2-shazam-1.jpg",
+        },
         height: "1,80m a 1,90m",
         weight: "80kg a 90kg",
         gender: "Masculino",
@@ -56,7 +78,10 @@ var herosDc = [
     {
         aka: "Mulher Gavião",
         name: "Shayera Hol",
-        photo: "https://i.pinimg.com/736x/e5/4a/e1/e54ae13d3508d50309ae60756484fde8.jpg",
+        photo: {
+            card: "https://i.pinimg.com/736x/e5/4a/e1/e54ae13d3508d50309ae60756484fde8.jpg",
+            cont: "https://ovicio.com.br/wp-content/uploads/2023/06/20230623-hawkgirl-1-preview-a-1-scaled.jpg",
+        },
         height: "1,75m a 1,80m",
         weight: "65kg a 70kg",
         gender: "Feminino",
@@ -66,7 +91,10 @@ var herosDc = [
     {
         aka: "Aquaman",
         name: "Arthur Curry",
-        photo: "https://static.wikia.nocookie.net/dccomics/images/a/a0/Aquaman_Vol_8_48_Textless_Variant.jpg/revision/latest?cb=20190615033729&path-prefix=pt",
+        photo: {
+            card: "https://static.wikia.nocookie.net/dccomics/images/a/a0/Aquaman_Vol_8_48_Textless_Variant.jpg/revision/latest?cb=20190615033729&path-prefix=pt",
+            cont: "https://caoticoeneutro.wordpress.com/wp-content/uploads/2015/06/aquaman1.jpg?w=1189",
+        },
         height: "1,80m a 1,90m",
         weight: "90kg a 100kg",
         gender: "Masculino",
@@ -76,7 +104,10 @@ var herosDc = [
     {
         aka: "Cyborg",
         name: "Victor Stone",
-        photo: "https://static.wikia.nocookie.net/dccomics/images/7/78/Cyborg_Vol_1_1_Textless.jpg/revision/latest?cb=20180125190239&path-prefix=pt",
+        photo: {
+            card: "https://static.wikia.nocookie.net/dccomics/images/7/78/Cyborg_Vol_1_1_Textless.jpg/revision/latest?cb=20180125190239&path-prefix=pt",
+            cont: "https://static.wikia.nocookie.net/world-of-marvel-and-dc-comics/images/7/76/Promo324661233.jpg/revision/latest?cb=20170801043033",
+        },
         height: "1,80m a 2 metros",
         weight: "150kg a 200kg",
         gender: "Masculino",
@@ -86,7 +117,10 @@ var herosDc = [
     {
         aka: "Lanterna Verde",
         name: "John Stewart",
-        photo: "https://i.pinimg.com/474x/c2/3c/66/c23c66c241fe996c26cfee48dbc1f843.jpg",
+        photo: {
+            card: "https://i.pinimg.com/474x/c2/3c/66/c23c66c241fe996c26cfee48dbc1f843.jpg",
+            cont: "https://tm.ibxk.com.br/2023/01/31/31143642291256.jpg?ims=1200x675",
+        },
         height: "1,80m a 1,90m",
         weight: "80kg a 90kg",
         gender: "Masculino",
@@ -96,7 +130,10 @@ var herosDc = [
     {
         aka: "Caçador de Marte",
         name: "Martian Manhunter",
-        photo: "https://pm1.aminoapps.com/6341/d2d752d6b5300fedbc184470f618690a6da0eba4_hq.jpg",
+        photo: {
+            card: "https://pm1.aminoapps.com/6341/d2d752d6b5300fedbc184470f618690a6da0eba4_hq.jpg",
+            cont: "https://www.einerd.com.br/wp-content/uploads/2021/02/Cacador-de-Marte-1.jpg",
+        },
         height: "1,85m a 1,90m",
         weight: "90kg a 100kg",
         gender: "Masculino",
@@ -104,7 +141,6 @@ var herosDc = [
         powers: "Força sobre-humana, Voo, Invisibilidade, Intangibilidade, Mudança de forma, Telepatia, Telecinese, Visão marciana, Longevidade sobre-humana"
     },
 ]
-
 
 herosDc.map((hero) => { // estrutura do arrow function () => {}, dentro dos parenteses é o item/objeto que estou enviando , a seta representa uma function e dentro de chaves é oque a function faz
     var newCard = document.createElement("button")
@@ -116,8 +152,9 @@ herosDc.map((hero) => { // estrutura do arrow function () => {}, dentro dos pare
     container.appendChild(newCard)
     newCard.appendChild(cardName)
 
-    newCard.style.cssText = `background-image: url(${hero.photo});`
+    newCard.style.cssText = `background-image: url(${hero.photo.card});`
     cardName.textContent = hero.aka
+
 
     newCard.addEventListener("click", function () {
         var bio = document.querySelector(".bio")
@@ -133,6 +170,8 @@ herosDc.map((hero) => { // estrutura do arrow function () => {}, dentro dos pare
         gender.textContent = hero.gender
 
         styleSelected(newCard, cardName)
+
+        heroPhoto.style.cssText = `background-image: url(${hero.photo.cont});`
 
     })
 })
@@ -162,48 +201,78 @@ function styleSelected(cardSelect, nameSelect) {
 
 }
 
+var falsa = false
+
 function teste(event) {
+
+    var falsa2 = 0
+
     if (event.key === "Enter") {
+
+
 
         let divPai = document.querySelector(".heros-nav")
         let divFilhos = divPai.querySelectorAll("button")
         divFilhos.forEach(butao => butao.remove()) // forEach só pode ser usada na divFilhos por que ela é um array de buttons// forEach é similar ao map
-        
-      
+
+
         herosDc.map((hero) => {
             if (hero.aka.toLowerCase().includes(event.target.value.toLowerCase())) {
-                console.log("batata")
+                falsa2++
                 var newCard = document.createElement("button")
                 var cardName = document.createElement("div")
-            
+
                 newCard.setAttribute("class", "card")
                 cardName.setAttribute("class", "card-name")
-            
+
                 container.appendChild(newCard)
                 newCard.appendChild(cardName)
-            
-                newCard.style.cssText = `background-image: url(${hero.photo});`
+
+                newCard.style.cssText = `background-image: url(${hero.photo.card});`
                 cardName.textContent = hero.aka
-            
+
+
+
                 newCard.addEventListener("click", function () {
                     var bio = document.querySelector(".bio")
                     var powerText = document.querySelector(".power")
                     var height = document.querySelector(".height")
                     var weight = document.querySelector(".weight")
                     var gender = document.querySelector(".gender")
-            
+
                     bio.textContent = hero.bio
                     powerText.textContent = hero.powers
                     height.textContent = hero.height
                     weight.textContent = hero.weight
                     gender.textContent = hero.gender
-            
+
+                    heroPhoto.style.cssText = `background-image: url(${hero.photo.cont});`
+
                     styleSelected(newCard, cardName)
-            
+
                 })
 
             }
         })
 
+        if (falsa2 === 0 && falsa === false) {
+
+            falsa = true
+
+            notFound.appendChild(nfText)
+            container.appendChild(notFound)
+
+            container.style.justifyContent = "center"
+
+
+        } else if (falsa2 !== 0 && falsa === true) {
+            falsa = false
+
+            notFound.remove()
+            nfText.remove()
+            container.style.justifyContent = "unset"
+
+        }
     }
 }
+

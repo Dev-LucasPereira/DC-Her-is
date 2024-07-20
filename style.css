@@ -59,12 +59,14 @@ input {
 .heros-nav {
   padding: 20px 0 20px 0;
   display: flex;
+  align-items: center;
   gap: 12px;
   width: 100%;
   max-width: 1200px;
   border-radius: 8px;
   overflow-x: scroll;
   box-sizing: border-box;
+  height: 400px;
 }
 
 .heros-nav::-webkit-scrollbar {
@@ -88,6 +90,17 @@ input {
 .heros-nav::-webkit-scrollbar-thumb:hover {
   background: #05209c;
   /* Cor do indicador ao passar o mouse */
+}
+
+.inv-nf {
+  display: flex;
+  justify-content: center;
+}
+.not-found {
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+  color: rgb(131, 130, 130);
 }
 
 .card {
@@ -178,6 +191,16 @@ cursor: pointer;
   width: 100%;
   max-width: 500px;
 }
+.hero-photo {
+  margin-top: 20px;
+background-image: url(https://recreio.com.br/media/uploads/dc_comics/batman_quadrinhos_capa.jpg);
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  max-width: 500px;
+  /* min-width: 350px; */
+  height: 250px;
+}
 
 .container-3 {
   gap: 10px;
@@ -217,11 +240,18 @@ footer {
   height: 80px;
 }
 
-@media(max-width: 600px){
+@media(max-width: 730px){
 
 .invChild {
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 }
+
+@media(max-width: 480px){
+
+  .invChild {
+  justify-content: center;
+  }
+  
+  }
